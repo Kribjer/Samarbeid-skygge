@@ -20,30 +20,54 @@ hdi <- read.csv("human-development-index.csv")
 ```
 
 ```{r}
+# Vi har 4 kolonner; Country, Value, Code og Year. hdi er hovedarkivet vårt.
+
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 
-norge <- hdi %>%
+norgeHdi <- hdi %>%
   filter(Country == "Norway")
 
 
 ```
 
 ```{r}
-ggplot(hdi, aes(x = Year, y = Value)) +
-  geom_point()
+#Laster opp og rydder renewable energy filen
+
+energy <- read.csv("modern-renewable-energy-consumption.csv")
+energy <- rename(energy, "Country" = "Entity")
+energy <- rename(energy, "Hydro" = "Hydropower..terawatt.hours.")
+energy <- rename(energy, "Wind" = "Wind..terawatt.hours.")
+energy <- rename(energy, "Solar" = "Solar..terawatt.hours.")
+energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels..geothermal..wave...tidal...terawatt.hours.")
 ```
 
 ```{r}
-#print test
-print("Hello world")
+norgeEnergi <- energy %>%
+  filter(Country == "Norway")
+
 ```
 
 ```{r}
-print ("Test Marius")
+#Eksempel plot med norgeEnergi
+
+ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) +
+  geom_point() + 
+  geom_line()
+```
+
+
+```{r}
+# Eksempel plot med norgeHdi
+
+ggplot(norgeHdi, aes(x = Year, y = Value, color = Country)) +
+  geom_point() + 
+  geom_line()
 ```
 
 ```{r}
-print("test anndre")
+# Merger datasettene til et stort et. Kan være lurt å dele det inn i mindre kolonner og må få fikset dato.
+
+totaldata <- merge(energy, hdi, by = "Country")
 ```
 
