@@ -39,4 +39,8 @@ ggplot(hdi, aes(x = Year, y = Value)) +
 print("Hello world")
 ```
 
+```{r}
+print ("Test Marius")
+```
+
 
