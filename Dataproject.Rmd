@@ -16,10 +16,10 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
+hdi <- read.csv("human-development-index.csv")
 ```
 
 ```{r}
-hdi <- human.development.index
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 
