@@ -1,0 +1,36 @@
+---
+title: "Data Science Project"
+author: "Kristian Bjerke"
+date: "24/09/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rm(list = ls())
+
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+
+```
+
+```{r}
+hdi <- human.development.index
+hdi <- rename(hdi, "Country" = "Entity")
+hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
+
+norge <- hdi %>%
+  filter(Country == "Norway")
+
+
+```
+
+```{r}
+ggplot(hdi, aes(x = Year, y = Value)) +
+  geom_point()
+```
+
