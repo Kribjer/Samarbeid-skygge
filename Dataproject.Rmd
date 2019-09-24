@@ -34,3 +34,9 @@ ggplot(hdi, aes(x = Year, y = Value)) +
   geom_point()
 ```
 
+```{r}
+#print test
+print("Hello world")
+```
+
+
