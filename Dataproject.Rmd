@@ -43,6 +43,7 @@ energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels
 ```
 
 ```{r}
+#Eksempel med Norge
 norgeEnergi <- energy %>%
   filter(Country == "Norway")
 
@@ -69,5 +70,11 @@ ggplot(norgeHdi, aes(x = Year, y = Value, color = Country)) +
 # Merger datasettene til et stort et. Kan være lurt å dele det inn i mindre kolonner og må få fikset dato.
 
 totaldata <- merge(energy, hdi, by = "Country")
+
+ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
+  geom_point()+
+  geom_line()
+  
+
 ```
 
