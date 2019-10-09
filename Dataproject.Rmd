@@ -52,18 +52,22 @@ norgeEnergi <- energy %>%
 ```{r}
 #Eksempel plot med norgeEnergi
 
-ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) +
+norplotEnergy <- ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) +
   geom_point() + 
-  geom_line()
+  geom_line() +
+  theme_minimal()
 ```
 
 
 ```{r}
 # Eksempel plot med norgeHdi
 
-ggplot(norgeHdi, aes(x = Year, y = Value, color = Country)) +
+norplotHDI <- ggplot(norgeHdi, aes(x = Year, y = Value, color = Country)) +
   geom_point() + 
-  geom_line()
+  geom_line() +
+  theme_minimal()
+
+norplotHDI
 ```
 
 ```{r}
@@ -75,6 +79,22 @@ ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
   geom_point()+
   geom_line()
   
+
+```
+
+```{r}
+#JOBB 1: fikse på kolonnene i totaldata og få sortert det.
+
+
+```
+
+```{r}
+#Jobb 2: finne korrelasjoner i ulike land / alle land mellom HDI og alt. energi.
+```
+
+```{r}
+#Jobb 3: Om vi finner noe interessant: Poengter det med grafer. F.eks: Hvis Norge har høy korrelasjon, hvis det med en graf. Forklar!
+
 
 ```
 
