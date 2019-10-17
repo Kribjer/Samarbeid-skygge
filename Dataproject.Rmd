@@ -53,11 +53,11 @@ norgeEnergi <- energy %>%
 ```{r}
 #Eksempel plot med norgeEnergi
 
-norplotEnergy <- ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) +
+norplotHydro <- ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) +
   geom_point() + 
   geom_line() +
   theme_minimal()
-norplotEnergy
+norplotHydro
 
 ```
 
@@ -66,6 +66,7 @@ norplotEnergy
 # Eksempel plot med norgeHdi
 
 norplotHDI <- ggplot(norgeHdi, aes(x = Year, y = Value, color = Country)) +
+  labs(y = "HDI", x = "Year") +
   geom_point() + 
   geom_line() +
   theme_minimal()
@@ -78,7 +79,7 @@ norplotHDI
 
 totaldata <- merge(energy, hdi, by = "Country")
 
-ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
+totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
   geom_point()+
   geom_line()
   
