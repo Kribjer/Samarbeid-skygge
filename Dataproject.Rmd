@@ -47,6 +47,7 @@ energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels
 norgeEnergi <- energy %>%
   filter(Country == "Norway")
 
+
 ```
 
 ```{r}
@@ -56,6 +57,8 @@ norplotEnergy <- ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) 
   geom_point() + 
   geom_line() +
   theme_minimal()
+norplotEnergy
+
 ```
 
 
