@@ -28,6 +28,8 @@ hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 
 norgeHdi <- hdi %>%
   filter(Country == "Norway")
+hdi <- hdi %>%
+  filter(Country == c("India", "Norway", "Algeria", "Argentina", "Germany"))
 
 
 ```
@@ -46,11 +48,31 @@ energy <- energy %>%
   filter(Year >= 1980, Year <= 2016)
 energy <- energy[ ,-2]
 
+energy <- energy %>%
+  filter(Country == c("India", "Norway", "Algeria", "Argentina", "Germany"))
+
 hdi <- hdi %>%
   filter(Year >= 1980, Year <= 2016)
 
 hdi <- hdi[ ,-2]
 ```
+
+```{r}
+#Laster opp gdp percap filen og rydder den
+
+GdpPercap <- read.csv("real-gdp-per-capita-PWT.csv")
+
+GdpPercap <- GdpPercap %>%
+  filter(Entity == c("India", "Norway", "Algeria", "Argentina", "Germany"))
+
+GdpPercap <- GdpPercap[ , -2]
+
+GdpPercap <- rename(GdpPercap, "Country" = "Entity", "Year" = "Year", "GdpPercap" = "GDP.per.capita..2011.international....PPP.adjusted.US...")
+
+ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
+  geom_line()
+```
+
 
 ```{r}
 #Eksempel med Norge
