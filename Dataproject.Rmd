@@ -98,7 +98,7 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
 ```
 
 ```{r}
-#Lager et datasett med totalenergi forbruk
+#Lager et datasett med landene vi skal ha med Norge, tyskland, (argentina?), india
 
 
 
