@@ -44,9 +44,12 @@ energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels
 
 energy <- energy %>%
   filter(Year >= 1980, Year <= 2016)
+energy <- energy[ ,-2]
 
 hdi <- hdi %>%
   filter(Year >= 1980, Year <= 2016)
+
+hdi <- hdi[ ,-2]
 ```
 
 ```{r}
