@@ -120,7 +120,7 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
 ```
 
 ```{r}
-#Lager et datasett med landene vi skal ha med Norge, tyskland, (argentina?), india
+#Lager et datasett med landene vi skal ha med Norge, tyskland, Algerie, india, argentina. Vi må merge energy slik at det blir en samlet kolonne.
 
 
 
@@ -128,19 +128,4 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
 ```
 
 
-```{r}
-#JOBB 1: fikse på kolonnene i totaldata og få sortert det.
-
-
-```
-
-```{r}
-#Jobb 2: finne korrelasjoner i ulike land / alle land mellom HDI og alt. energi.
-```
-
-```{r}
-#Jobb 3: Om vi finner noe interessant: Poengter det med grafer. F.eks: Hvis Norge har høy korrelasjon, hvis det med en graf. Forklar!
-
-
-```
 
