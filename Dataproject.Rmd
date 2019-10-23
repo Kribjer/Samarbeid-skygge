@@ -18,6 +18,7 @@ library(tidyverse)
 library(gapminder)
 library(gganimate)
 library(hrbrthemes)
+library(png)
 
 hdi <- read.csv("human-development-index.csv")
 ```
@@ -82,9 +83,6 @@ gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
   width = NULL, height = NULL)
 
 file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE)
-
-ffmpeg_renderer(format = "auto", ffmpeg = NULL,
-  options = list(pix_fmt = "yuv420p"))
 
 magick_renderer(loop = TRUE)
 
