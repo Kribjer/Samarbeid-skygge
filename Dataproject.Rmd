@@ -16,6 +16,8 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(gapminder)
+library(gganimate)
+library(hrbrthemes)
 
 hdi <- read.csv("human-development-index.csv")
 ```
@@ -71,6 +73,31 @@ GdpPercap <- rename(GdpPercap, "Country" = "Entity", "Year" = "Year", "GdpPercap
 
 ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
   geom_line()
+
+
+
+#TEST FOR ANIMERT GRAF
+
+gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
+  width = NULL, height = NULL)
+
+file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE)
+
+ffmpeg_renderer(format = "auto", ffmpeg = NULL,
+  options = list(pix_fmt = "yuv420p"))
+
+magick_renderer(loop = TRUE)
+
+sprite_renderer()
+
+ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) + 
+  geom_line() + 
+  geom_point() + 
+  ggtitle("Gdp per capita by country from 1950 to 2018") + 
+  ylab("Gdp per capita") +
+  transition_reveal(Year)
+
+
 ```
 
 
@@ -120,7 +147,7 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
 ```
 
 ```{r}
-#Lager et datasett med landene vi skal ha med Norge, tyskland, Algerie, india, argentina. Vi må merge energy slik at det blir en samlet kolonne.
+#Lager et datasett med landene vi skal ha med Norge, tyskland, (argentina?), india
 
 
 
@@ -128,4 +155,19 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
 ```
 
 
+```{r}
+#JOBB 1: fikse på kolonnene i totaldata og få sortert det.
+
+
+```
+
+```{r}
+#Jobb 2: finne korrelasjoner i ulike land / alle land mellom HDI og alt. energi.
+```
+
+```{r}
+#Jobb 3: Om vi finner noe interessant: Poengter det med grafer. F.eks: Hvis Norge har høy korrelasjon, hvis det med en graf. Forklar!
+
+
+```
 
