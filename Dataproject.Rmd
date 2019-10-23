@@ -17,7 +17,7 @@ library(ggplot2)
 library(tidyverse)
 library(gapminder)
 library(gganimate)
-library(hrbrthemes)
+library(hrbrthemes) # ikke sikker på om denne trenger å være med 
 library(png)
 
 hdi <- read.csv("human-development-index.csv")
