@@ -78,7 +78,9 @@ ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
   geom_line()
 
 
+```
 
+```{r}
 # ANIMERT GRAF AV GDP-PER-CAPITA 
 
 gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
@@ -86,21 +88,13 @@ gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
 
 file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE)
 
-magick_renderer(loop = TRUE)
-
-sprite_renderer()
-
 ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) + 
   geom_line() + 
   geom_point() + 
   ggtitle("Gdp per capita by country from 1950 to 2018") + 
   ylab("Gdp per capita") +
   transition_reveal(Year)
-
-
-
 ```
-
 
 ```{r}
 #Eksempel med Norge
