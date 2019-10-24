@@ -35,8 +35,7 @@ hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 
 norgeHdi <- hdi %>%
   filter(Country == "Norway")
-hdi <- hdi %>%
-  filter(Country %in% target)
+
 
 
 ```
@@ -50,19 +49,21 @@ energy <- rename(energy, "Hydro" = "Hydropower..terawatt.hours.")
 energy <- rename(energy, "Wind" = "Wind..terawatt.hours.")
 energy <- rename(energy, "Solar" = "Solar..terawatt.hours.")
 energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels..geothermal..wave...tidal...terawatt.hours.")
-
-energy <- energy %>%
-  filter(Year >= 1980, Year <= 2016)
 energy <- energy[ ,-2]
 
+worldenergy <- energy %>%
+  filter(Country == "World")
 
-energy <- energy %>%
-  filter(Country %in% target)
+worldenergy$TotalenergyUse<-rowSums(worldenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
 
-hdi <- hdi %>%
-  filter(Year >= 1980, Year <= 2016)
+worldenergy <- worldenergy[ ,-3:-6]
 
-hdi <- hdi[ ,-2]
+ggplot(worldenergy, aes(x = Year, y = TotalenergyUse)) +
+  geom_line()
+
+
+
+
 ```
 
 ```{r}
@@ -76,8 +77,6 @@ GdpPercap <- GdpPercap %>%
   filter(Country %in% target)
 
 GdpPercap <- GdpPercap[ , -2]
-
-
 
 ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
   geom_line()+
@@ -102,7 +101,6 @@ animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
   transition_reveal(Year)+
   theme_ft_rc()
 
-animplot
 
 
 ```
