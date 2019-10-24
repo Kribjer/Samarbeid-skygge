@@ -19,6 +19,8 @@ library(gapminder)
 library(gganimate)
 library(hrbrthemes) # ikke sikker på om denne trenger å være med 
 library(png)
+library(gifski)
+library(magick)
 
 hdi <- read.csv("human-development-index.csv")
 ```
@@ -94,6 +96,7 @@ ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
   ggtitle("Gdp per capita by country from 1950 to 2018") + 
   ylab("Gdp per capita") +
   transition_reveal(Year)
+
 
 
 ```
