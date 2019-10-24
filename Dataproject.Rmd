@@ -140,13 +140,6 @@ animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
 
 ```
 
-```{r}
-#Eksempel med Norge
-norgeEnergi <- energy %>%
-  filter(Country == "Norway")
-
-
-```
 
 ```{r}
 # Merger datasettene til et stort et. Kan være lurt å dele det inn i mindre kolonner og må få fikset dato.
