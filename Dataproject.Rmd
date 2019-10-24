@@ -28,13 +28,15 @@ hdi <- read.csv("human-development-index.csv")
 ```{r}
 # Vi har 4 kolonner; Country, Value, Code og Year. hdi er hovedarkivet vårt.
 
+target <- c("Norway", "Argentina", "India", "Germany", "Algeria")
+
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 
 norgeHdi <- hdi %>%
   filter(Country == "Norway")
 hdi <- hdi %>%
-  filter(Country == c("India", "Norway", "Algeria", "Argentina", "Germany"))
+  filter(Country %in% target)
 
 
 ```
@@ -53,8 +55,9 @@ energy <- energy %>%
   filter(Year >= 1980, Year <= 2016)
 energy <- energy[ ,-2]
 
+
 energy <- energy %>%
-  filter(Country == c("India", "Norway", "Algeria", "Argentina", "Germany"))
+  filter(Country %in% target)
 
 hdi <- hdi %>%
   filter(Year >= 1980, Year <= 2016)
@@ -67,12 +70,14 @@ hdi <- hdi[ ,-2]
 
 GdpPercap <- read.csv("real-gdp-per-capita-PWT.csv")
 
+GdpPercap <- rename(GdpPercap, "Country" = "Entity", "Year" = "Year", "GdpPercap" = "GDP.per.capita..2011.international....PPP.adjusted.US...")
+
 GdpPercap <- GdpPercap %>%
-  filter(Entity == c("India", "Norway", "Algeria", "Argentina", "Germany"))
+  filter(Country %in% target)
 
 GdpPercap <- GdpPercap[ , -2]
 
-GdpPercap <- rename(GdpPercap, "Country" = "Entity", "Year" = "Year", "GdpPercap" = "GDP.per.capita..2011.international....PPP.adjusted.US...")
+
 
 ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
   geom_line()
@@ -95,7 +100,6 @@ animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
   ylab("Gdp per capita") +
   transition_reveal(Year)
 
-animplot
 
 ```
 
