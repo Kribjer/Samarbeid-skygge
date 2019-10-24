@@ -88,12 +88,15 @@ gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
 
 file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE)
 
-ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) + 
+animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) + 
   geom_line() + 
   geom_point() + 
   ggtitle("Gdp per capita by country from 1950 to 2018") + 
   ylab("Gdp per capita") +
   transition_reveal(Year)
+
+animplot
+
 ```
 
 ```{r}
