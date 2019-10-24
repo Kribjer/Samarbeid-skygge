@@ -80,7 +80,8 @@ GdpPercap <- GdpPercap[ , -2]
 
 
 ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
-  geom_line()
+  geom_line()+
+  theme_ft_rc()
 
 
 ```
@@ -98,7 +99,10 @@ animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
   geom_point() + 
   ggtitle("Gdp per capita by country from 1950 to 2018") + 
   ylab("Gdp per capita") +
-  transition_reveal(Year)
+  transition_reveal(Year)+
+  theme_ft_rc()
+
+animplot
 
 
 ```
