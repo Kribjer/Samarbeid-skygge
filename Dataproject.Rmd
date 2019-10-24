@@ -28,16 +28,8 @@ hdi <- read.csv("human-development-index.csv")
 ```{r}
 # Vi har 4 kolonner; Country, Value, Code og Year. hdi er hovedarkivet vårt.
 
-target <- c("Norway", "Argentina", "India", "Germany", "Algeria")
-
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
-
-norgeHdi <- hdi %>%
-  filter(Country == "Norway")
-
-
-
 ```
 
 ```{r}
@@ -59,9 +51,52 @@ worldenergy$TotalenergyUse<-rowSums(worldenergy[, c("Hydro", "Wind", "Solar", "O
 worldenergy <- worldenergy[ ,-3:-6]
 
 ggplot(worldenergy, aes(x = Year, y = TotalenergyUse)) +
-  geom_line()
+  geom_line()+
+  ggtitle("World energy use")
 
+africaenergy <- energy %>%
+  filter(Country == "Africa")
 
+africaenergy$TotalenergyUse<-rowSums(africaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+africaenergy <- africaenergy[ ,-3:-6]
+
+ggplot(africaenergy, aes(x = Year, y = TotalenergyUse))+
+  geom_line()+
+  ggtitle("Africa energy use")
+
+europeEnergy <- energy %>%
+  filter(Country == "European Union")
+
+europeEnergy$TotalenergyUse<-rowSums(europeEnergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+europeEnergy <- europeEnergy[ ,-3:-6]
+
+ggplot(europeEnergy, aes(x = Year, y = TotalenergyUse))+
+  geom_line()+
+  ggtitle("European Union energy use")
+
+asiaenergy <- energy %>%
+  filter(Country == "Asia Pacific")
+
+asiaenergy$TotalenergyUse<-rowSums(asiaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+asiaenergy <- asiaenergy[ ,-3:-6]
+
+ggplot(asiaenergy, aes(x = Year, y = TotalenergyUse))+
+  geom_line()+
+  ggtitle("Asia energy use")
+
+americaenergy <- energy %>%
+  filter(Country == "North America")
+
+americaenergy$TotalenergyUse<-rowSums(americaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+americaenergy <- americaenergy[ ,-3:-6]
+
+ggplot(americaenergy, aes(x = Year, y = TotalenergyUse))+
+  geom_line()+
+  ggtitle("North America Energy use")
 
 
 ```
@@ -111,31 +146,6 @@ norgeEnergi <- energy %>%
   filter(Country == "Norway")
 
 
-```
-
-```{r}
-#Eksempel plot med norgeEnergi
-
-norplotHydro <- ggplot(norgeEnergi, aes(x = Year, y = Hydro, color = Country)) +
-  geom_point() + 
-  geom_line() +
-  labs(title = "Hydropower consumption by year, Norway")+
-  theme_minimal()
-norplotHydro
-
-```
-
-
-```{r}
-# Eksempel plot med norgeHdi
-
-norplotHDI <- ggplot(norgeHdi, aes(x = Year, y = Value, color = Country)) +
-  labs(y = "HDI", x = "Year", title = "HDI by year, Norway") +
-  geom_point() + 
-  geom_line() +
-  theme_minimal()
-
-norplotHDI
 ```
 
 ```{r}
