@@ -108,14 +108,18 @@ GdpPercap <- read.csv("real-gdp-per-capita-PWT.csv")
 
 GdpPercap <- rename(GdpPercap, "Country" = "Entity", "Year" = "Year", "GdpPercap" = "GDP.per.capita..2011.international....PPP.adjusted.US...")
 
-GdpPercap <- GdpPercap %>%
-  filter(Country %in% target)
-
 GdpPercap <- GdpPercap[ , -2]
 
-ggplot(GdpPercap, aes(y = GdpPercap, x = Year, color = Country)) +
-  geom_line()+
-  theme_ft_rc()
+GdpUS <- GdpPercap %>%
+  filter(Country == "United States")
+
+ggplot(GdpUS, aes(x = Year, y = GdpPercap)) +
+  geom_line()
+
+#Tester å sette gdppercap med totalenergy use for USA
+ggplot() +
+  geom_line(data = GdpUS, aes(y = GdpUS$GdpPercap, x = Year)) +
+  geom_line(data = americaenergy, aes(y = americaenergy$TotalenergyUse, x = Year))
 
 
 ```
