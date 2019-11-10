@@ -106,8 +106,10 @@ chinaenergy$TotalenergyUse<-rowSums(chinaenergy[, c("Hydro", "Wind", "Solar", "O
 
 chinaenergy <- chinaenergy[ ,-3:-6]
 
+energyview <- energy
 
-
+energyview$TotalenergyUse <- rowSums(energyview[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+energyview <- energyview[ ,-3:-6]
 
 ```
 
