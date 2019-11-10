@@ -30,6 +30,7 @@ hdi <- read.csv("human-development-index.csv")
 
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
+hdi <- hdi[ ,-2]
 ```
 
 ```{r}
@@ -98,6 +99,15 @@ ggplot(americaenergy, aes(x = Year, y = TotalenergyUse))+
   geom_line()+
   ggtitle("North America Energy use")
 
+chinaenergy <- energy %>%
+  filter(Country == "China")
+
+chinaenergy$TotalenergyUse<-rowSums(chinaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+chinaenergy <- chinaenergy[ ,-3:-6]
+
+
+
 
 ```
 
@@ -114,7 +124,13 @@ GdpUS <- GdpPercap %>%
   filter(Country == "United States")
 
 ggplot(GdpUS, aes(x = Year, y = GdpPercap)) +
-  geom_line()
+  geom_line() +
+  ggtitle("North America GDP per capita")
+
+GdpChina <- GdpPercap %>%
+  filter(Country == "China")
+
+
 
 #Tester å sette gdppercap med totalenergy use for USA
 ggplot() +
@@ -123,6 +139,52 @@ ggplot() +
 
 
 ```
+
+```{r}
+#China alle plots
+
+ggplot(GdpChina, aes(x = Year, y = GdpPercap)) +
+  geom_line() +
+  ggtitle("China GDP per capita")
+
+ggplot(chinaenergy, aes(x = Year, y = TotalenergyUse))+
+  geom_line()+
+  ggtitle("China Energy use")
+
+chinahdi <- hdi %>%
+  filter(Country == "China")
+
+ggplot(chinahdi, aes(x = Year, y = Value)) +
+  geom_line() +
+  ggtitle("China HDI")
+
+
+
+```
+
+```{r}
+#India, for å sjekke om populasjon har noe med saken å gjøre
+
+indiaenergy <- energy %>%
+  filter(Country == "India")
+
+indiaenergy$TotalenergyUse<-rowSums(indiaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+indiaenergy <- indiaenergy[ ,-3:-6]
+
+ggplot(indiaenergy, aes(x = Year, y = TotalenergyUse)) +
+  geom_line() +
+  ggtitle("India energy use")
+
+indiaGdp <- GdpPercap %>%
+  filter(Country == "India")
+
+ggplot(indiaGdp, aes(x = Year, y = GdpPercap)) +
+  geom_line() +
+  ggtitle("India GdpPercap")
+
+```
+
 
 ```{r}
 # ANIMERT GRAF AV GDP-PER-CAPITA 
