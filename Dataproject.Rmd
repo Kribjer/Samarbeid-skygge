@@ -160,8 +160,14 @@ ggplot(chinahdi, aes(x = Year, y = Value)) +
   geom_line() +
   ggtitle("China HDI")
 
+chinapop <- energyview %>%
+  group_by(Year) %>%
+  filter(Country == "China") %>%
+  summarize(percapita = sum(TotalenergyUse/1435806307))
 
-
+ggplot(chinapop, aes(x = Year, y = percapita)) +
+  geom_line() +
+  ggtitle("China energy use per capita")
 ```
 
 ```{r}
