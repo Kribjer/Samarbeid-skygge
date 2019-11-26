@@ -34,44 +34,6 @@ hdi <- hdi[ ,-2]
 ```
 
 ```{r}
-#Uploading and fixing the population file for easy data wrangling
-
-Population <- read.csv("population-figures-by-country-csv_csv.csv")
-
-Population <- gather(Population, Year, Population, Year_1960:Year_2016)
-
-Population$Year <- substring(Population$Year, 6, 9)
-
-Population$Year <- as.numeric(Population$Year)
-
-Population <- Population[-1:-1315, ]
-
-Population <- Population [, -2]
-
-Totalpop <- merge(Population, energyview)
-
-totalprcap <- Totalpop %>%
-  group_by(Year, Country) %>%
-  summarise(Prcap = TotalenergyUse/Population)
-
-chinatest <- totalprcap %>%
-  filter(Country == "China")
-plot(chinatest)
-
-chinapop <- Population %>%
-  filter(Country == "China")
-
-chinatotal <- merge(chinaenergy, chinapop)
-
-chinatotal <- chinatotal %>%
-  group_by(Year) %>%
-  summarise(EnergyprCap = TotalenergyUse/Population)
-
-plot(chinatotal)
-```
-
-
-```{r}
 #Laster opp og rydder renewable energy filen
 
 energy <- read.csv("modern-renewable-energy-consumption.csv")
@@ -198,12 +160,8 @@ ggplot(chinahdi, aes(x = Year, y = Value)) +
   geom_line() +
   ggtitle("China HDI")
 
-chinapop <- energyview %>%
-  group_by(Year) %>%
-  filter(Country == "China") %>%
-  summarize(percapita = sum(TotalenergyUse/1435806307))
 
-ggplot(chinapop, aes(x = Year, y = percapita)) +
+ggplot(chinatotal, aes(x = Year, y = EnergyprCap)) +
   geom_line() +
   ggtitle("China energy use per capita")
 ```
@@ -229,6 +187,14 @@ ggplot(indiaGdp, aes(x = Year, y = GdpPercap)) +
   geom_line() +
   ggtitle("India GdpPercap")
 
+indiaprcap <- totalprcap %>%
+  group_by(Year) %>%
+  filter(Country == "India")
+
+ggplot(indiaprcap, aes(x = Year, y = Prcap)) +
+  ggtitle("India Energypercap")+
+  geom_line()
+
 ```
 
 
@@ -250,6 +216,43 @@ animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
 
 
 
+```
+
+```{r}
+#Uploading and fixing the population file for easy data wrangling
+
+Population <- read.csv("population-figures-by-country-csv_csv.csv")
+
+Population <- gather(Population, Year, Population, Year_1960:Year_2016)
+
+Population$Year <- substring(Population$Year, 6, 9)
+
+Population$Year <- as.numeric(Population$Year)
+
+Population <- Population[-1:-1315, ]
+
+Population <- Population [, -2]
+
+Totalpop <- merge(Population, energyview)
+
+totalprcap <- Totalpop %>%
+  group_by(Year, Country) %>%
+  summarise(Prcap = TotalenergyUse/Population)
+
+chinatest <- totalprcap %>%
+  filter(Country == "China")
+plot(chinatest)
+
+chinapop <- Population %>%
+  filter(Country == "China")
+
+chinatotal <- merge(chinaenergy, chinapop)
+
+chinatotal <- chinatotal %>%
+  group_by(Year) %>%
+  summarise(EnergyprCap = TotalenergyUse/Population)
+
+plot(chinatotal)
 ```
 
 
