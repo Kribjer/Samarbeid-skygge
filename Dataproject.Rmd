@@ -22,6 +22,8 @@ library(png)
 library(gifski)
 library(magick)
 
+
+
 hdi <- read.csv("human-development-index.csv")
 ```
 
@@ -161,9 +163,6 @@ ggplot(chinahdi, aes(x = Year, y = Value)) +
   ggtitle("China HDI")
 
 
-ggplot(chinatotal, aes(x = Year, y = EnergyprCap)) +
-  geom_line() +
-  ggtitle("China energy use per capita")
 ```
 
 ```{r}
@@ -187,13 +186,7 @@ ggplot(indiaGdp, aes(x = Year, y = GdpPercap)) +
   geom_line() +
   ggtitle("India GdpPercap")
 
-indiaprcap <- totalprcap %>%
-  group_by(Year) %>%
-  filter(Country == "India")
 
-ggplot(indiaprcap, aes(x = Year, y = Prcap)) +
-  ggtitle("India Energypercap")+
-  geom_line()
 
 ```
 
