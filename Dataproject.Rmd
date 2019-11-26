@@ -34,6 +34,34 @@ hdi <- hdi[ ,-2]
 ```
 
 ```{r}
+#Uploading and fixing the population file for easy data wrangling
+
+Population <- read.csv("population-figures-by-country-csv_csv.csv")
+
+Population <- gather(Population, Year, Population, Year_1960:Year_2016)
+
+Population$Year <- substring(Population$Year, 6, 9)
+
+Population$Year <- as.numeric(Population$Year)
+
+Population <- Population [, -2]
+
+chinapop <- Population %>%
+  filter(Country == "China")
+
+chinapop <- chinapop[-1:-5, ]
+
+chinatotal <- merge(chinaenergy, chinapop)
+
+chinatotal <- chinatotal %>%
+  group_by(Year) %>%
+  summarise(EnergyprCap = TotalenergyUse/Population)
+
+plot(chinatotal)
+```
+
+
+```{r}
 #Laster opp og rydder renewable energy filen
 
 energy <- read.csv("modern-renewable-energy-consumption.csv")
