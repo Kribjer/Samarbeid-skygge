@@ -44,12 +44,22 @@ Population$Year <- substring(Population$Year, 6, 9)
 
 Population$Year <- as.numeric(Population$Year)
 
+Population <- Population[-1:-1315, ]
+
 Population <- Population [, -2]
+
+Totalpop <- merge(Population, energyview)
+
+totalprcap <- Totalpop %>%
+  group_by(Year, Country) %>%
+  summarise(Prcap = TotalenergyUse/Population)
+
+chinatest <- totalprcap %>%
+  filter(Country == "China")
+plot(chinatest)
 
 chinapop <- Population %>%
   filter(Country == "China")
-
-chinapop <- chinapop[-1:-5, ]
 
 chinatotal <- merge(chinaenergy, chinapop)
 
