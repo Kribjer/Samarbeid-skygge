@@ -234,7 +234,7 @@ totalprcap <- Totalpop %>%
 
 chinatest <- totalprcap %>%
   filter(Country == "China")
-plot(chinatest)
+
 
 chinapop <- Population %>%
   filter(Country == "China")
@@ -245,17 +245,25 @@ chinatotal <- chinatotal %>%
   group_by(Year) %>%
   summarise(EnergyprCap = TotalenergyUse/Population)
 
-plot(chinatotal)
+ggplot(chinatotal, aes(x = Year, y = EnergyprCap)) +
+  geom_line()
 ```
 
 ```{r}
 test <- totalprcap[order(-totalprcap$Prcap), ]
-unique(test$Country)
+unique(test$Country, 5)
+
+test2 <- energyview[order(-energyview$TotalenergyUse), ]
+unique(test2$Country)
+
+head(sort(-energyview$TotalenergyUse, 5))
 
 ```
 
 ```{r}
-tidy(totalprcap)
+ggplot()
+  
+  
 ```
 
 
