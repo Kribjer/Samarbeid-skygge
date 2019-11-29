@@ -21,15 +21,15 @@ library(hrbrthemes) # ikke sikker på om denne trenger å være med
 library(png)
 library(gifski)
 library(magick)
+library(broom)
 
 
 
-hdi <- read.csv("human-development-index.csv")
 ```
 
 ```{r}
 # Vi har 4 kolonner; Country, Value, Code og Year. hdi er hovedarkivet vårt.
-
+hdi <- read.csv("human-development-index.csv")
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 hdi <- hdi[ ,-2]
@@ -248,6 +248,16 @@ chinatotal <- chinatotal %>%
 plot(chinatotal)
 ```
 
+```{r}
+test <- totalprcap[order(-totalprcap$Prcap), ]
+unique(test$Country)
+
+```
+
+```{r}
+tidy(totalprcap)
+```
+
 
 ```{r}
 # Merger datasettene til et stort et. Kan være lurt å dele det inn i mindre kolonner og må få fikset dato.
@@ -258,30 +268,6 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
   geom_point()+
   geom_line()
   
-
-```
-
-```{r}
-#Lager et datasett med landene vi skal ha med Norge, tyskland, argentina, india
-
-
-```
-
-
-```{r}
-#JOBB 1: fikse på kolonnene i totaldata og få sortert det.
-
-
-```
-
-```{r}
-#Jobb 2: finne korrelasjoner i ulike land / alle land mellom HDI og alt. energi.
-
-```
-
-```{r}
-#Jobb 3: Om vi finner noe interessant: Poengter det med grafer. F.eks: Hvis Norge har høy korrelasjon, hvis det med en graf. Forklar!
-
 
 ```
 
