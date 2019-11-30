@@ -261,7 +261,13 @@ head(sort(-energyview$TotalenergyUse, 5))
 ```
 
 ```{r}
-ggplot()
+#Growth rate energyprcap
+
+growth <- function(x)x/lag(x)-1
+
+rate <- totalprcap %>%
+  group_by(Country) %>%
+  mutate_each(funs(growth), Prcap)
   
   
 ```
