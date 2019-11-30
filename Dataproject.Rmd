@@ -307,6 +307,13 @@ avgGrowth <- rateprcap %>%
 ratetotal <- energyview %>%
   group_by(Country) %>%
   mutate_each(funs(growth), TotalenergyUse)
+
+ratetotal <- na.omit(ratetotal)
+
+Avgtotal <- ratetotal %>%
+  group_by(Country) %>%
+  summarise(AvGrowth = sum(TotalenergyUse/50))
+
   
 graphing <- function(x){ggplot(x, aes(x = Year, y = x[ ,3])) +
   geom_line()}
