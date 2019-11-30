@@ -252,15 +252,35 @@ ggplot(chinatotal, aes(x = Year, y = EnergyprCap)) +
 ```{r}
 #Heads (top5) for each category
 
+Continents <- c("Non-OECD", "World", "OECD", "Asia Pacific", "Europe & Eurasia", "North America", "European Union", "South & Central America", "CIS")
 
-Headprcap <- totalprcap[order(-totalprcap$Prcap), ]
+#Fixing for 2016 on prcap energyuse
+prcap2016 <- totalprcap %>%
+  filter(Year == 2016)
+
+
+Headprcap <- prcap2016[order(-prcap2016$Prcap), ]
 head(unique(Headprcap$Country, 5))
 
-Headtotal <- energyview[order(-energyview$TotalenergyUse), ] 
-Headtotal
-head(unique(Headtotal$Country, 5))
+#Removing continents for energyview
+energy2016 <- energyview %>%
+  filter(Year == 2016)
 
-head(sort(-energyview$TotalenergyUse, 5))
+energyview <- energyview %>%
+  filter(Country != "Non-OECD") %>%
+  filter(Country != "World") %>%
+  filter(Country != "OECD") %>%
+  filter(Country != "Asia Pacific") %>%
+  filter(Country != "Europe & Eurasia") %>%
+  filter(Country != "North America") %>%
+  filter(Country != "European Union") %>%
+  filter(Country != "South & Central America") %>%
+  filter(Country != "CIS") %>%
+  filter(Country != "Africa")
+
+#Top 5 Total energy use 2016
+Headtotal <- energy2016[order(-energy2016$TotalenergyUse), ] 
+head(unique(Headtotal$Country, 5))
 
 ```
 
@@ -269,13 +289,19 @@ head(sort(-energyview$TotalenergyUse, 5))
 
 growth <- function(x){(x/lag(x)-1)}
 
+totalprcap <- totalprcap %>%
+  filter(Country != "World")
+#1-54
+
 rateprcap <- totalprcap %>%
   group_by(Country) %>%
   mutate_each(funs(growth), Prcap)
 
+rateprcap <- rateprcap[-1:-54, ]
+
 avgGrowth <- rateprcap %>%
   group_by(Country) %>%
-  summarise(AvgGrowth = sum(Prcap/51))
+  summarise(AvgGrowth = sum(Prcap/50))
   
   
 ratetotal <- energyview %>%
@@ -302,6 +328,14 @@ energyview %>%
 test5 <- energyview %>%
   group_by(Country) %>%
   order(-energyview$TotalenergyUse)
+
+#First 5 for rates cap and total
+
+Headratecap <- rateprcap[order(-rateprcap$Prcap), ]
+head(unique(Headratecap$Country, 5))
+
+Headtotalcap <- ratetotal[order(-ratetotal$TotalenergyUse), ]
+head(unique(Headtotalcap$Country, 5))
 ```
 
 
