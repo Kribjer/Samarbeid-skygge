@@ -250,11 +250,15 @@ ggplot(chinatotal, aes(x = Year, y = EnergyprCap)) +
 ```
 
 ```{r}
-test <- totalprcap[order(-totalprcap$Prcap), ]
-unique(test$Country, 5)
+#Heads (top5) for each category
 
-test2 <- energyview[order(-energyview$TotalenergyUse), ]
-unique(test2$Country)
+
+Headprcap <- totalprcap[order(-totalprcap$Prcap), ]
+head(unique(Headprcap$Country, 5))
+
+Headtotal <- energyview[order(-energyview$TotalenergyUse), ] 
+Headtotal
+head(unique(Headtotal$Country, 5))
 
 head(sort(-energyview$TotalenergyUse, 5))
 
@@ -263,13 +267,41 @@ head(sort(-energyview$TotalenergyUse, 5))
 ```{r}
 #Growth rate energyprcap
 
-growth <- function(x)x/lag(x)-1
+growth <- function(x){(x/lag(x)-1)}
 
-rate <- totalprcap %>%
+rateprcap <- totalprcap %>%
   group_by(Country) %>%
   mutate_each(funs(growth), Prcap)
+
+avgGrowth <- rateprcap %>%
+  group_by(Country) %>%
+  summarise(AvgGrowth = sum(Prcap/51))
   
   
+ratetotal <- energyview %>%
+  group_by(Country) %>%
+  mutate_each(funs(growth), TotalenergyUse)
+  
+graphing <- function(x){ggplot(x, aes(x = Year, y = x[ ,3])) +
+  geom_line()}
+
+test3 <- energyview %>%
+  graphing
+
+test3
+
+energyview %>%
+  filter(Country == "Africa") %>%
+  graphing
+
+filtcountry <- function(x){x%>%filter(Country == unique(x[ ,1]))}
+
+energyview %>%
+  filtcountry
+
+test5 <- energyview %>%
+  group_by(Country) %>%
+  order(-energyview$TotalenergyUse)
 ```
 
 
