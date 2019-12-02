@@ -28,7 +28,7 @@ library(broom)
 ```
 
 ```{r}
-# Vi har 4 kolonner; Country, Value, Code og Year. hdi er hovedarkivet vårt.
+#Laster opp og rydder HDI filen
 hdi <- read.csv("human-development-index.csv")
 hdi <- rename(hdi, "Country" = "Entity")
 hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
@@ -46,72 +46,66 @@ energy <- rename(energy, "Solar" = "Solar..terawatt.hours.")
 energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels..geothermal..wave...tidal...terawatt.hours.")
 energy <- energy[ ,-2]
 
+energy$TotalenergyUse <- rowSums(energy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
+
+energy <- energy[ ,-3:-6]
+
+#Lager plot for energy world
+
+
 worldenergy <- energy %>%
   filter(Country == "World")
-
-worldenergy$TotalenergyUse<-rowSums(worldenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-worldenergy <- worldenergy[ ,-3:-6]
 
 ggplot(worldenergy, aes(x = Year, y = TotalenergyUse)) +
   geom_line()+
   ggtitle("World energy use")
 
+#Energy Africa
+
 africaenergy <- energy %>%
   filter(Country == "Africa")
-
-africaenergy$TotalenergyUse<-rowSums(africaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-africaenergy <- africaenergy[ ,-3:-6]
 
 ggplot(africaenergy, aes(x = Year, y = TotalenergyUse))+
   geom_line()+
   ggtitle("Africa energy use")
 
+#Energy Europe
+
 europeEnergy <- energy %>%
   filter(Country == "European Union")
-
-europeEnergy$TotalenergyUse<-rowSums(europeEnergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-europeEnergy <- europeEnergy[ ,-3:-6]
 
 ggplot(europeEnergy, aes(x = Year, y = TotalenergyUse))+
   geom_line()+
   ggtitle("European Union energy use")
 
+#Energy Asia
+
 asiaenergy <- energy %>%
   filter(Country == "Asia Pacific")
-
-asiaenergy$TotalenergyUse<-rowSums(asiaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-asiaenergy <- asiaenergy[ ,-3:-6]
 
 ggplot(asiaenergy, aes(x = Year, y = TotalenergyUse))+
   geom_line()+
   ggtitle("Asia energy use")
 
+#Energy North America
+
 americaenergy <- energy %>%
   filter(Country == "North America")
-
-americaenergy$TotalenergyUse<-rowSums(americaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-americaenergy <- americaenergy[ ,-3:-6]
 
 ggplot(americaenergy, aes(x = Year, y = TotalenergyUse))+
   geom_line()+
   ggtitle("North America Energy use")
 
+#Energy China
+
 chinaenergy <- energy %>%
   filter(Country == "China")
 
-chinaenergy$TotalenergyUse<-rowSums(chinaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-chinaenergy <- chinaenergy[ ,-3:-6]
+#Total energy for easy viewing
 
 energyview <- energy
 
-energyview$TotalenergyUse <- rowSums(energyview[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-energyview <- energyview[ ,-3:-6]
+
 
 ```
 
@@ -136,7 +130,7 @@ GdpChina <- GdpPercap %>%
 
 
 
-#Tester å sette gdppercap med totalenergy use for USA
+#Tester å sette gdppercap med totalenergy use for USA. Kunne startet den lavere og på samme punkt på y aksen, men det er ingen korrelasjon uansett.
 ggplot() +
   geom_line(data = GdpUS, aes(y = GdpUS$GdpPercap, x = Year)) +
   geom_line(data = americaenergy, aes(y = americaenergy$TotalenergyUse, x = Year))
@@ -166,14 +160,10 @@ ggplot(chinahdi, aes(x = Year, y = Value)) +
 ```
 
 ```{r}
-#India, for å sjekke om populasjon har noe med saken å gjøre
+#India, for å sjekke om populasjon kan forklare økt bruk av alternativ energi
 
 indiaenergy <- energy %>%
   filter(Country == "India")
-
-indiaenergy$TotalenergyUse<-rowSums(indiaenergy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
-
-indiaenergy <- indiaenergy[ ,-3:-6]
 
 ggplot(indiaenergy, aes(x = Year, y = TotalenergyUse)) +
   geom_line() +
@@ -226,6 +216,8 @@ Population <- Population[-1:-1315, ]
 
 Population <- Population [, -2]
 
+#Merging it together with energyview to get Per capita
+
 Totalpop <- merge(Population, energyview)
 
 totalprcap <- Totalpop %>%
@@ -234,7 +226,6 @@ totalprcap <- Totalpop %>%
 
 chinatest <- totalprcap %>%
   filter(Country == "China")
-
 
 chinapop <- Population %>%
   filter(Country == "China")
@@ -262,7 +253,7 @@ prcap2016 <- totalprcap %>%
 Headprcap <- prcap2016[order(-prcap2016$Prcap), ]
 head(unique(Headprcap$Country, 5))
 
-#Removing continents for energyview
+#Removing continents for energyview. usinc c() didnt work so i had to force it.
 energy2016 <- energyview %>%
   filter(Year == 2016)
 
@@ -285,19 +276,20 @@ head(unique(Headtotal$Country, 5))
 ```
 
 ```{r}
-#Growth rate energyprcap
+#Growth rate energyprcap function
 
 growth <- function(x){(x/lag(x)-1)}
 
 totalprcap <- totalprcap %>%
   filter(Country != "World")
-#1-54
 
 rateprcap <- totalprcap %>%
   group_by(Country) %>%
   mutate_each(funs(growth), Prcap)
 
 rateprcap <- rateprcap[-1:-54, ]
+
+#Average growth rate, divided by 50 [(2016-1965)-1]
 
 avgGrowth <- rateprcap %>%
   group_by(Country) %>%
@@ -314,7 +306,8 @@ Avgtotal <- ratetotal %>%
   group_by(Country) %>%
   summarise(AvGrowth = sum(TotalenergyUse/50))
 
-  
+#Trying to create a function that graphs automatically.
+
 graphing <- function(x){ggplot(x, aes(x = Year, y = x[ ,3])) +
   geom_line()}
 
@@ -332,9 +325,7 @@ filtcountry <- function(x){x%>%filter(Country == unique(x[ ,1]))}
 energyview %>%
   filtcountry
 
-test5 <- energyview %>%
-  group_by(Country) %>%
-  order(-energyview$TotalenergyUse)
+test5 <- energyview[order(-energyview$TotalenergyUse), ]
 
 #First 5 for rates cap and total
 
