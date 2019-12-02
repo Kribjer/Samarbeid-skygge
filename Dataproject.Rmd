@@ -22,6 +22,7 @@ library(png)
 library(gifski)
 library(magick)
 library(broom)
+library(plotly)
 
 
 
@@ -346,6 +347,38 @@ totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
   geom_point()+
   geom_line()
   
+
+```
+
+```{r}
+#Test with plotly
+
+test6 <- energyview %>%
+  plot_ly(type = "scatter", x = ~Year, y = ~TotalenergyUse, text = ~Country, hoverinfo = "text", mode = "markers", transforms = list(
+    list(
+      type = "filter",
+      target = ~Country,
+      operation = "=", 
+      value = unique(energyview$Country)[1]
+    )
+  )) %>%
+  layout(
+    updatemenus = list(
+      list(
+        type = "dropdown",
+        active = 0,
+        buttons = list(
+          list(method = "restyle",
+            args = list("transforms[0].value", unique(energyview$Country)[1],
+             label = unique(energyview$Country)[1]),
+            list(method = "restyle",
+            args = list("transforms[0].value", unique(energyview$Country)[2],
+             label = unique(energyview$Country)[2]), 
+            list(method = "restyle",
+            args = list("transforms[0].value", unique(energyview$Country)[3],
+             label = unique(energyview$Country)[3]))))))))
+
+test6
 
 ```
 
