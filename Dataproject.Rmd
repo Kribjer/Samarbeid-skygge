@@ -23,7 +23,7 @@ library(gifski)
 library(magick)
 library(broom)
 library(plotly)
-
+packageVersion("plotly")
 
 
 ```
@@ -337,18 +337,6 @@ Headtotalcap <- ratetotal[order(-ratetotal$TotalenergyUse), ]
 head(unique(Headtotalcap$Country, 5))
 ```
 
-
-```{r}
-# Merger datasettene til et stort et. Kan være lurt å dele det inn i mindre kolonner og må få fikset dato.
-
-totaldata <- merge(energy, hdi, by = "Country")
-
-totalPlot <- ggplot(totaldata, aes(x=Year.y, y=Value, color = Country))+
-  geom_point()+
-  geom_line()
-  
-
-```
 
 ```{r}
 #Test with plotly
