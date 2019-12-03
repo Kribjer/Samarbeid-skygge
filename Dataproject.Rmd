@@ -320,6 +320,7 @@ head(unique(Headtotalcap$Country, 5))
 
 
 ```{r}
+#Interactive plot for total energy use
 plotTotal <- energyview %>%
   SharedData$new(key = ~Country, group = "Select a country") %>%
   plot_ly(x = ~Year, y = ~TotalenergyUse, alpha = 0.5, hoverinfo = "text", text = ~Country) %>%
@@ -330,6 +331,7 @@ plotTotal
 ```
 
 ```{r}
+#Plot for energy pr capita
 plotPrcap <- totalprcap %>%
   SharedData$new(key = ~Country, group = "Select a country") %>%
   plot_ly(x = ~Year, y = ~Prcap, alpha = 0.5, hoverinfo = "text", text = ~Country) %>%
