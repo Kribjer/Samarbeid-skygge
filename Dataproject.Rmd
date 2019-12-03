@@ -23,6 +23,8 @@ library(gifski)
 library(magick)
 library(broom)
 library(plotly)
+library(crosstalk)
+library(R2HTML)
 packageVersion("plotly")
 
 
@@ -339,34 +341,23 @@ head(unique(Headtotalcap$Country, 5))
 
 
 ```{r}
-#Test with plotly
+plotTotal <- energyview %>%
+  SharedData$new(key = ~Country, group = "Select a country") %>%
+  plot_ly(x = ~Year, y = ~TotalenergyUse, alpha = 0.5, hoverinfo = "text", text = ~Country) %>%
+  group_by(Country) %>%
+  add_lines() %>%
+  highlight(selectize = TRUE)
+plotTotal
+```
 
-test6 <- energyview %>%
-  plot_ly(type = "scatter", x = ~Year, y = ~TotalenergyUse, text = ~Country, hoverinfo = "text", mode = "markers", transforms = list(
-    list(
-      type = "filter",
-      target = ~Country,
-      operation = "=", 
-      value = unique(energyview$Country)[1]
-    )
-  )) %>%
-  layout(
-    updatemenus = list(
-      list(
-        type = "dropdown",
-        active = 0,
-        buttons = list(
-          list(method = "restyle",
-            args = list("transforms[0].value", unique(energyview$Country)[1],
-             label = unique(energyview$Country)[1]),
-            list(method = "restyle",
-            args = list("transforms[0].value", unique(energyview$Country)[2],
-             label = unique(energyview$Country)[2]), 
-            list(method = "restyle",
-            args = list("transforms[0].value", unique(energyview$Country)[3],
-             label = unique(energyview$Country)[3]))))))))
+```{r}
+plotPrcap <- totalprcap %>%
+  SharedData$new(key = ~Country, group = "Select a country") %>%
+  plot_ly(x = ~Year, y = ~Prcap, alpha = 0.5, hoverinfo = "text", text = ~Country) %>%
+  group_by(Country) %>%
+  add_lines() %>%
+  highlight(selectize = TRUE)
 
-test6
-
+plotPrcap
 ```
 
