@@ -309,27 +309,6 @@ Avgtotal <- ratetotal %>%
   group_by(Country) %>%
   summarise(AvGrowth = sum(TotalenergyUse/50))
 
-#Trying to create a function that graphs automatically.
-
-graphing <- function(x){ggplot(x, aes(x = Year, y = x[ ,3])) +
-  geom_line()}
-
-test3 <- energyview %>%
-  graphing
-
-test3
-
-energyview %>%
-  filter(Country == "Africa") %>%
-  graphing
-
-filtcountry <- function(x){x%>%filter(Country == unique(x[ ,1]))}
-
-energyview %>%
-  filtcountry
-
-test5 <- energyview[order(-energyview$TotalenergyUse), ]
-
 #First 5 for rates cap and total
 
 Headratecap <- rateprcap[order(-rateprcap$Prcap), ]
