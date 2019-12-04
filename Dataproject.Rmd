@@ -406,6 +406,7 @@ Top 5 in the world | Top 5 per capita
             Canada | New Zealand
              India | Austria
              
+From the Graph under you can choose witch country you want to look at. This graph shows you the average consumption of renewable energy per capita. 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 plotPrcap
@@ -420,11 +421,18 @@ plotPrcap
 
   Top 5 total      | Top 5 per capita
 ------------------ | -----------------
-      Turkmekistan | Algeria
-           Algeria | Denmark
+      Turkmekistan | Algerie
+           Algerie | Denmark
            Belarus | Hungary
            Denmark | Belgium
-           Vietnam | Vietnam 
+           Vietnam | Vietnam  
+             
+              
+              
+We looked into the sources from where the countries with high consumption of renewable energy got there energy from. All the countries got mainly their energy from hydro-alternatives, wind was second most common followed by solar. 
+And then we found something really surprising when we looked at the countries with high growth rate. We initially thought the countries also mainly would use hydro as their energy source, but it turned out that the these countries get there renewable energy from wind and solar.
+
+After a little more research  we found out that developing countries have poor access to formal finance witch makes it difficult to start big projects. This leads to difficulties when investors want to invest because there is a lack of investor protection. Bad social infrastructure and political instability can affect the investment poorly. 
 
   
   
