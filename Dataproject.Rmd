@@ -1,6 +1,6 @@
 ---
-title: "Data Science Project"
-author: "Kristian Bjerke"
+title: "Final Dataproject"
+author: "skyggemenn inc."
 date: "24/09/2019"
 output: html_document
 ---
@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, include=FALSE}
 rm(list = ls())
 
 library(dplyr)
@@ -30,7 +30,7 @@ packageVersion("plotly")
 
 ```
 
-```{r}
+```{r, include=FALSE}
 #Laster opp og rydder HDI filen
 hdi <- read.csv("human-development-index.csv")
 hdi <- rename(hdi, "Country" = "Entity")
@@ -38,7 +38,7 @@ hdi <- rename(hdi, "Value" = "X..0.1..higher.values.are.better..")
 hdi <- hdi[ ,-2]
 ```
 
-```{r}
+```{r, include=FALSE}
 #Laster opp og rydder renewable energy filen
 
 energy <- read.csv("modern-renewable-energy-consumption.csv")
@@ -112,7 +112,7 @@ energyview <- energy
 
 ```
 
-```{r}
+```{r, include=FALSE}
 #Laster opp gdp percap filen og rydder den
 
 GdpPercap <- read.csv("real-gdp-per-capita-PWT.csv")
@@ -141,7 +141,7 @@ ggplot() +
 
 ```
 
-```{r}
+```{r, include=FALSE}
 #China alle plots
 
 ggplot(GdpChina, aes(x = Year, y = GdpPercap)) +
@@ -162,7 +162,7 @@ ggplot(chinahdi, aes(x = Year, y = Value)) +
 
 ```
 
-```{r}
+```{r, include=FALSE}
 #India, for å sjekke om populasjon kan forklare økt bruk av alternativ energi
 
 indiaenergy <- energy %>%
@@ -184,7 +184,7 @@ ggplot(indiaGdp, aes(x = Year, y = GdpPercap)) +
 ```
 
 
-```{r}
+```{r, include=FALSE}
 # ANIMERT GRAF AV GDP-PER-CAPITA 
 
 gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
@@ -204,7 +204,7 @@ animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) +
 
 ```
 
-```{r}
+```{r, include=FALSE}
 #Uploading and fixing the population file for easy data wrangling
 
 Population <- read.csv("population-figures-by-country-csv_csv.csv")
@@ -243,7 +243,7 @@ ggplot(chinatotal, aes(x = Year, y = EnergyprCap)) +
   geom_line()
 ```
 
-```{r}
+```{r, include=FALSE}
 #Heads (top5) for each category
 
 Continents <- c("Non-OECD", "World", "OECD", "Asia Pacific", "Europe & Eurasia", "North America", "European Union", "South & Central America", "CIS")
@@ -278,7 +278,7 @@ head(unique(Headtotal$Country, 5))
 
 ```
 
-```{r}
+```{r, include=FALSE}
 #Growth rate energyprcap function
 
 growth <- function(x){(x/lag(x)-1)}
@@ -319,7 +319,7 @@ head(unique(Headtotalcap$Country, 5))
 ```
 
 
-```{r}
+```{r, include=FALSE}
 #Interactive plot for total energy use
 plotTotal <- energyview %>%
   SharedData$new(key = ~Country, group = "Select a country") %>%
@@ -330,7 +330,7 @@ plotTotal <- energyview %>%
 plotTotal
 ```
 
-```{r}
+```{r, include=FALSE}
 #Plot for energy pr capita
 plotPrcap <- totalprcap %>%
   SharedData$new(key = ~Country, group = "Select a country") %>%
@@ -343,4 +343,69 @@ plotPrcap
 ```
 
 
+# Consumptions of renewable energy
+
+For our data project we wanted to look on the consumption of renewable energy. We asked us self what we wanted to focus on, and we decided to look closer on the total consumption in the world and the increase in usage of renewable energy.  
+  
+  
+* So we asked us self these questions:  
+  + What are the top five countries in renewable energy consumption.
+  + What are the top five countries in renewable energy consumption per capita. 
+  + What are the top five countries with highest average growth rate in consumption of renewable energy between 1965 and 2016
+  + What are the top five countries with highest average growth rate in consumption of renewable energy per capita between 1965 and 2016  
+  
+  
+    
+      
+But first we think it is wise to clarify where we got our data, and what limitations the data gave us.  
+
+Our source is primarily Oure World Data. The site is run by a subdivision on the University of Oxford, which depends on voluntary donations for its users. The site is primarily a gathering service and gathers information from other scientists, universities and independent people from all over the world, and post the data on their website. All the big data in the project has been taken from this website. The data from this site is up to 2016, and due to some countries lacking information before 1965 we chose to start the dataset from 65’  
+
+
+After a lot of data-wrangling we manage to make some datasets that was really interesting. The first thing we looked at was the five countries that had the highest consumptions of renewable energy. From this dataset we got that china had the highest consumption in the world, almost twice as much as second place, which was USA. Rest of the list looked like this:
+
+1. China
+2. USA
+3. Brazil
+4. Canada
+5. India
+
+When you look at the graph below you can search for the desired country. The graph contains all the countries we had in our dataset.  
+  The x-axis tells us how much energy in megawatt that where consumed in a year, and the y-axis shows each year from 65’ to 16’. 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+plotTotal
+```
+
+  
+What is interesting about the top 5 countries is that the countries either has a fairly large population or a big economy.
+
+#### Per Capita  
+  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mention on both rankings but only on second place. Norway tops the ranking, but this is not strange at all considering that the county get 99% of its energy consumption from renewable energy (mainly hydroelectric).  
+    From table under you can see the top 5 list for energy consumption in the world and per capita  
+      
+
+Top 5 in the world | Top 5 per capita
+------------------ | -----------------
+             China | Norway
+               USA | Canada
+            Brazil | Sweden
+            Canada | New Zealand
+             India | Austria
+      
+      
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
