@@ -294,10 +294,12 @@ rateprcap <- rateprcap[-1:-54, ]
 
 #Average growth rate, divided by 50 [(2016-1965)-1]
 
-avgGrowth <- rateprcap %>%
+avgprcap <- rateprcap %>%
   group_by(Country) %>%
   summarise(AvgGrowth = sum(Prcap/50))
-  
+
+avgprcap <- na.omit(avgprcap)
+#Average growth rate total
   
 ratetotal <- energyview %>%
   group_by(Country) %>%
@@ -309,12 +311,17 @@ Avgtotal <- ratetotal %>%
   group_by(Country) %>%
   summarise(AvGrowth = sum(TotalenergyUse/50))
 
+#Removing sums that divided by zero
+
+Avgtotal <- Avgtotal %>%
+  filter_all(all_vars(!is.infinite(.)))
+
 #First 5 for rates cap and total
 
-Headratecap <- rateprcap[order(-rateprcap$Prcap), ]
+Headratecap <- avgprcap[order(-avgprcap$AvgGrowth), ]
 head(unique(Headratecap$Country, 5))
 
-Headtotalcap <- ratetotal[order(-ratetotal$TotalenergyUse), ]
+Headtotalcap <- Avgtotal[order(-Avgtotal$AvGrowth), ]
 head(unique(Headtotalcap$Country, 5))
 ```
 
@@ -345,26 +352,27 @@ plotPrcap
 
 
 
-# Consumptions of renewable energy
+# Consumption of renewable energy
 
-For our data project we wanted to look on the consumption of renewable energy. We asked us self what we wanted to focus on, and we decided to look closer on the total consumption in the world and the increase in usage of renewable energy.  
+For our data project we wanted to look at the consumption of renewable energy. We asked ourselves what we wanted to focus on, and we decided to look closer on the total consumption in the world, and the increase in usage of renewable energy.  
   
   
-* So we asked us self these questions:  
-  + What are the top five countries in renewable energy consumption.
-  + What are the top five countries in renewable energy consumption per capita. 
-  + What are the top five countries with highest average growth rate in consumption of renewable energy between 1965 and 2016
-  + What are the top five countries with highest average growth rate in consumption of renewable energy per capita between 1965 and 2016  
+* To get started, we wanted to take a look at:  
+  + What are the top five countries in renewable energy consumption?
+  + What are the top five countries in renewable energy consumption per capita?
+  + What are the top five countries with highest average growth rate in consumption of renewable energy between 1965 and 2016?
+  + What are the top five countries with highest average growth rate in consumption of renewable energy per capita between 1965 and 2016?
+  + Do these countries have something in common?
   
   
     
       
 But first we think it is wise to clarify where we got our data, and what limitations the data gave us.  
 
-Our source is primarily Oure World Data. The site is run by a subdivision on the University of Oxford, which depends on voluntary donations for its users. The site is primarily a gathering service and gathers information from other scientists, universities and independent people from all over the world, and post the data on their website. All the big data in the project has been taken from this website. The data from this site is up to 2016, and due to some countries lacking information before 1965 we chose to start the dataset from 65’  
+Our source is primarily Our World Data. The site is run by a subdivision on the University of Oxford, which depends on voluntary donations for its users. The site is primarily a gathering service and gathers information from other scientists, universities and independent people from all over the world, and post the data on their website. All the big data in the project has been taken from this website. The data from this site includes up to 2016, and due to some countries lacking information before 1965 we chose to start the dataset from 1965.  
 
 
-After a lot of data-wrangling we manage to make some datasets that was really interesting. The first thing we looked at was the five countries that had the highest consumptions of renewable energy. From this dataset we got that china had the highest consumption in the world, almost twice as much as second place, which was USA. Rest of the list looked like this:
+After a lot of data-wrangling we manage to make some datasets that were really interesting. The first thing we looked at was the five countries that had the highest consumptions of renewable energy. From this dataset we found that china had the highest consumption in the world, almost twice as much as second place, which was USA. The rest of the list looked like this:
 
 1. China
 2. USA
@@ -373,21 +381,21 @@ After a lot of data-wrangling we manage to make some datasets that was really in
 5. India
 
 When you look at the graph below you can search for the desired country. The graph contains all the countries we had in our dataset.  
-  The x-axis tells us how much energy in megawatt that where consumed in a year, and the y-axis shows each year from 65’ to 16’. 
+  The y-axis tells us how much energy in megawatt that where consumed in a year, and the x-axis shows each year from 1965 to 2016. We recommend looking at China, USA and Brazil to see the development differences.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 plotTotal
 ```
 
   
-What is interesting about the top 5 countries is that the countries either has a fairly large population or a big economy.
+At first glance, we can see that the top 5 countries either has a fairly large population or a well developed economy. What we also found interesting is China being at the top, as it is also on the top of global total Co2 emissions. 
 
 # HUSK FORKLARE RUNDT NOEN AV LANDENE EKS: USA
 
 #### Renewable energy useage Per Capita  
 
-  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mention on both rankings but only on second place. Norway tops the ranking, but this is not strange at all considering that the county get 99% of its energy from renewable energy (mainly hydroelectric).  
-    From table under you can see the top 5 list for energy consumption in the world and per capita  
+  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mentioned on both rankings but it has now moved to second place. Norway tops the ranking, but this is not strange at all considering that the country gets 99% of its energy from renewable energy (mainly hydropower).  
+    From the table below you can see the top 5 list for energy consumption in the world, total and per capita  
       
 
 Top 5 in the world | Top 5 per capita
@@ -405,12 +413,12 @@ plotPrcap
 
 
 
-### Average growth-rate in the usage of renewable energy from 65' to 16'  
+### Average growth-rate in the usage of renewable energy from 1965 to 2016  
   
-  Now we want to look at which countries has the highest growth rate in consumption of renewable energy. The reason we wanted to look at this is because we were wondering if its only “well developed” countries that pushes the technology forward to increase the amount of produced and used renewable energy. We made two datasets, just like the total consumption in the world. Top 5 in the world total, and Top 5 per capita.  
-    To find which countries was in the top 5 in each category, we had to use the average growth rate. We did this to eliminate the problem where a county could have had an insane growth rate in 1970 and close to zero for all the other years. By doing it this way we think the data is more accurate in the representation on which country has the highest growth rate. 
+  Now we want to look at which countries has the highest growth rate in consumption of renewable energy. The reason we wanted to look at this is because we were wondering if it is only “well developed” countries that pushes the technology forward to increase the amount of produced and used renewable energy. We made two datasets, Top 5 in the world (total) and Top 5 per capita.  
+    To find which countries were in the top 5 in each category, we had to use the average growth rate. We did this to eliminate the problem where a country could have had an abnormal growth rate in 1970 and close to zero for all the other years. By doing it this way we think the data is more accurate in the representation on which country has the highest growth rate. 
 
-Top 5 in the world | Top 5 per capita
+  Top 5 total      | Top 5 per capita
 ------------------ | -----------------
       Turkmekistan | Algeria
            Algeria | Denmark
