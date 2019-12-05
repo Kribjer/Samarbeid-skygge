@@ -391,6 +391,7 @@ plotTotal
 At first glance, we can see that the top 5 countries either has a fairly large population or a well developed economy. What we also found interesting is China being at the top, as it is also on the top of global total Co2 emissions. 
 
 # HUSK FORKLARE RUNDT NOEN AV LANDENE EKS: USA
+Now try to search for United states. As you can see from the graph there are three major dips in 1977. This may have been caused by the 1973 energy crisis. The reason is that due to this crisis the united stated decided to be energy independent and consolidated the federal energy administration which also had a energy research and development administration. All this may have led to make it more difficult to research and develop sources of renewable energy. In the 1980 US daman for oil started to increase, at the same time the situation in the Gulf forced US to protect their oil tankers.   Then we have 2001. Since its mainly hydro that produces renewable energy in the US makes it vulnerable to drought, which happened in 2001.  
 
 #### Renewable energy useage Per Capita  
 
