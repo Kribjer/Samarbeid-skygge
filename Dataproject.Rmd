@@ -363,7 +363,7 @@ For our data project we wanted to look at the consumption of renewable energy. W
   + What are the top five countries in renewable energy consumption per capita?
   + What are the top five countries with highest average growth rate in consumption of renewable energy between 1965 and 2016?
   + What are the top five countries with highest average growth rate in consumption of renewable energy per capita between 1965 and 2016?
-  + Do these countries have something in common in each of these categories?
+  + Do these countries have something in common?
   
   
     
@@ -407,6 +407,12 @@ Top 5 in the world | Top 5 per capita
             Canada | New Zealand
              India | Austria
              
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+```
+
+             
 From the Graph under you can choose witch country you want to look at. This graph shows you the average consumption of renewable energy per capita. 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -427,13 +433,32 @@ plotPrcap
            Belarus | Hungary
            Denmark | Belgium
            Vietnam | Vietnam  
+
+
+Top 5 total
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+head(unique(Headtotalcap$Country, 5))
+```
+
+Top 5 per capita
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+head(unique(Headratecap$Country, 5))
+```
              
-              
               
 We looked into the sources from where the countries with high consumption of renewable energy got their energy from. All the countries got mainly their energy from hydro-alternatives, wind was second most common followed by solar. 
 We then found something really surprising when we looked at the countries with high growth rate. We initially thought the countries also mainly would use hydro as their energy source, but it turned out that the these countries get their renewable energy from wind and solar. Logically, many countries may find it more beneficial to build wind turbines and solar panels. These are of course regional differences, where Denmark is a good example; Flat terrain provides lots of wind, but no slopes to build water dams for hydropower. This is where cost also comes into play: A country with no access to hydropower has to invest more into other renewable energies, which can be more costly. Example; To generate the same amount of energy, you would need alot of wind turbines rather than one water dam. This is all relative, of course, but it proves a point nonetheless. 
 
 After some more research, we found that developing countries have poor access to formal finance witch makes it difficult to start big projects. This leads to difficulties when investors want to invest because there is a lack of investor protection. Bad social infrastructure and political instability can affect the investment poorly. Due to the limitations for investments, it appears that building structures for renewable energy may be too costly for these countries. Another interesting point is the technology difference for developing countries; Efficiency for solar panels are tied directly to new technology for batteries, etc. For the best efficiency, you need the newest technology, which proves to be costly. It would especially make sense for countries in Africa to invest in solar energy, but buying the newest technology may be too costly.
+
+### In summary 
+
+Our findings indicate that an increase in renewable energy stems from several factors: 
+
+1. Investment in renewable energy
+2. Potential for renewable energy, regional differences (e.g slopes for dams or flat ground for wind turbines)
+3. Political agreements, where a quota has to be met (e.g Paris agreement)
+4. Access to technology
 
   
   
