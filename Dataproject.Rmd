@@ -285,7 +285,7 @@ growth <- function(x){(x/lag(x)-1)}
 
 totalprcap <- totalprcap %>%
   filter(Country != "World")
-totalprcap <- na.omit(totalprcap)
+totalprcap <- na.omit(totalprcap) 
 
 rateprcap <- totalprcap %>%
   group_by(Country) %>%
