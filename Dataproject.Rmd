@@ -1,6 +1,6 @@
 ---
 title: "Final Dataproject"
-author: "skyggemenn inc^TM."
+author: "skyggemenn inc^TM^."
 date: "24/09/2019"
 output: html_document
 ---
@@ -390,10 +390,12 @@ plotTotal
 
   
 At first glance, we can see that the top 5 countries either has a fairly large population or a well developed economy. What we also found interesting is China being at the top, as it is also on the top of global total Co2 emissions. There are several reasons why China has expanded so much over the years in the renewable energy sector; For one, the rising population increases demand for electricity, and investing in renewable energy creates a long-lasting and safe opportunity to provide it. The second point is the health hazards currently present in China, where air pollution is the main concern, from fossil fuel and coal power plants. Hydropower is the main source of renewable energy in China, which may come as a surprise to many. With these findings, one can ask the question; Why isn't India investing nearly as much in renewable energy as China? It has the same criterias, namely a rising population, and air pollution.  
+  
+  ***
 
-# HUSK FORKLARE RUNDT NOEN AV LANDENE EKS: USA
-Now try to search for United states. As you can see from the graph there are three major dips in 1977. This may have been caused by the 1973 energy crisis. The reason is that due to this crisis the united stated decided to be energy independent and consolidated the federal energy administration which also had a energy research and development administration. All this may have led to make it more difficult to research and develop sources of renewable energy. 
-In the 1980 US daman for oil started to increase, at the same time in the late 80’ the situation in the Gulf forced US to protect their oil tankers and not long after the war broke out. We haven’t found any direct link between the build up to the war and reduction in the consumption of renewable energy, but we assume that it would had some sort of impact. 
+
+__Now try to search for *United States* in the graph above__. As you can see from the graph there are three major dips in 1977. This may have been caused by the 1973 energy crisis. The reason is that due to this crisis the united stated decided to be energy independent and consolidated the federal energy administration which also had a energy research and development administration. All this may have led to make it more difficult to research and develop sources of renewable energy.  
+In the 1980 US daman for oil started to increase, at the same time in the late 80’ the situation in the Gulf forced US to protect their oil tankers and not long after the war broke out. We haven’t found any direct link between the build up to the war and reduction in the consumption of renewable energy, but we assume that it would had some sort of impact.  
 Then we have 2001. Since its mainly hydro that produces renewable energy in the US makes it vulnerable to drought, which happened in 2001.  
 
 #### Renewable energy useage Per Capita  
@@ -435,10 +437,33 @@ Turkmekistan 24.2% | Algeria 16%
 
 Top 5 total is gathered from the dataset "Headtotalcap", while Top 5 per capita is gathered from "Headratecap". 
 
-             
+* _We have gathered some information about the countries in this list to explain why they are on the list._  
+  + __Algeria__  
+    Algeria is the country that have highest grow rate with renewable energy. The reason for this is that they export petroleum and natural gas that is estimated to be more than 60% than their budget revenue. And over 95% of there exports earnings. Algeria went from having 80 % of their usage from oil to 60 % and 13% from Renewable energy to 26% the rest is from nuclear energy, in the time span from 2000 to 2009. Algeria have a astonish geographic stance that gives them enormous opportunities to harvest renewable energies, mainly from wind, solar and biomass. They sat a goal to generate as much renewable energy as they have from natural gas by 2020. Algeria have the potential to generate third times the necessaries energy usage they have now. All because the geographical location called the sun belt. The technology for generating renewable energy have expanded and made it cheaper to produce renewable energy  
+  + __Denmark__  
+    Denmark generate 43,4% of all the electricity consumption on wind power it went up from 19% in 2005 to 43,4 in 2018. Denmark have as goal to have more than half their energy usage from renewable energy by 2030 and zero fossil fuel energy usage by 2050. Denmark is one of the leading countries regarding wind power generating technologies. Denmark have policies that tradable green certifications that makes where electricity suppliers are obligated to a certain quote of renewable energy.    
+  + __Hungary__  
+    Hungary have good reason too to improve their production of renewable energy, one of there major reason is the political one where there Hungary have long wanted to join the EU. One aspects EU is focusing tremendous on is the renewable energy policies and for Hungary to join the EU they have focused on renewable energy. Making it one of the countries that have the highest growth rate on renewable energy. Hungary was the second lowest on renewable electricity production with only 7% in EU in 2016. In 2016 Hungary sourced 18% from coal, 50% from nuclear and 20% from gas. With that low renewable energy consumption before it’s not surprising that Hungary have a one of the highest growth rates with renewable energy.   
+  + __Belgium__  
+    Belgium have high growth rate with consuming renewable energy one of the reasons for that is because there have support schemes that mainly with a quota system based on trade of certificates. Making renewable energy a developed competence. Belgium also have governed wind power an hydropower with national regulations. Belgium has grown from 2% renewable energy usage to 8% from 2005 to 2014.      
+  + __Vietnam__
+    Vietnam have low cost on energy consumption with 37% renewable energy usage from hydropower. The rest is mainly from fossil energy sources. Vietnam plan to increase 7% percent of renewable energy usage every year until 2020. And above 10 percent after 2020. With reducing from coal and fossil fuel. This have made Vietnam one of the most increasing renewable energy production in the world.  
+  + __Turkmenistan__
+    Turkmenistan have especially high prospect to produce renewable energy. And with the agreement and economical support from Germany and technology agreement with Germany. they have managed to have a enormously growth rate with usage of renewable energy and become the biggest growth rate per renewable energy usage.     
+   + __Belarus__  
+     Belarus took initiative in the UN meeting in 2007 to have a technological sharing agreement regarding among other things as renewable energy. They also have economics agreements with the developing and production of renewable energy that have been a huge advantage to become one of the most growing rate per renewable energy usage. 
+     
+     
+     
               
 We looked into the sources from where the countries with high consumption of renewable energy got their energy from. All the countries got mainly their energy from hydro-alternatives, wind was second most common followed by solar. 
-We then found something really surprising when we looked at the countries with high growth rate. We initially thought the countries also mainly would use hydro as their energy source, but it turned out that the these countries get their renewable energy from wind and solar. Logically, many countries may find it more beneficial to build wind turbines and solar panels. These are of course regional differences, where Denmark is a good example; Flat terrain provides lots of wind, but no slopes to build water dams for hydropower. This is where cost also comes into play: A country with no access to hydropower has to invest more into other renewable energies, which can be more costly. Example; To generate the same amount of energy, you would need alot of wind turbines rather than one water dam. This is all relative, of course, but it proves a point nonetheless. 
+We then found something really surprising when we looked at the countries with high growth rate. We initially thought the countries also mainly would use hydro as their energy source, but it turned out that the these countries get their renewable energy from wind and solar. Logically, many countries may find it more beneficial to build wind turbines and solar panels. These are of course regional differences, where Denmark is a good example; Flat terrain provides lots of wind, but no slopes to build water dams for hydropower. This is where cost also comes into play: A country with no access to hydropower has to invest more into other renewable energies, which can be more costly. Example; To generate the same amount of energy, you would need alot of wind turbines rather than one water dam. This is all relative, of course, but it proves a point nonetheless.  
+  
+  ***
+
+
+
+
 
 After some more research, we found that developing countries have poor access to formal finance witch makes it difficult to start big projects. This leads to difficulties when investors want to invest because there is a lack of investor protection. Bad social infrastructure and political instability can affect the investment poorly. Due to the limitations for investments, it appears that building structures for renewable energy may be too costly for these countries. Another interesting point is the technology difference for developing countries; Efficiency for solar panels are tied directly to new technology for batteries, etc. For the best efficiency, you need the newest technology, which proves to be costly. It would especially make sense for countries in Africa to invest in solar energy, but buying the newest technology may be too costly.
 
