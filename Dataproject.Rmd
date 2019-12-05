@@ -392,7 +392,6 @@ plotTotal
 At first glance, we can see that the top 5 countries either has a fairly large population or a well developed economy. What we also found interesting is China being at the top, as it is also on the top of global total Co2 emissions. There are several reasons why China has expanded so much over the years in the renewable energy sector; For one, the rising population increases demand for electricity, and investing in renewable energy creates a long-lasting and safe opportunity to provide it. The second point is the health hazards currently present in China, where air pollution is the main concern, from fossil fuel and coal power plants. Hydropower is the main source of renewable energy in China, which may come as a surprise to many. With these findings, one can ask the question; Why isn't India investing nearly as much in renewable energy as China? It has the same criterias, namely a rising population, and air pollution.  
 
 # HUSK FORKLARE RUNDT NOEN AV LANDENE EKS: USA
-Now try to search for United states. As you can see from the graph there are three major dips in 1977. This may have been caused by the 1973 energy crisis. The reason is that due to this crisis the united stated decided to be energy independent and consolidated the federal energy administration which also had a energy research and development administration. All this may have led to make it more difficult to research and develop sources of renewable energy. In the 1980 US daman for oil started to increase, at the same time the situation in the Gulf forced US to protect their oil tankers.   Then we have 2001. Since its mainly hydro that produces renewable energy in the US makes it vulnerable to drought, which happened in 2001.  
 
 #### Renewable energy useage Per Capita  
 
@@ -408,13 +407,8 @@ Top 5 in the world | Top 5 per capita
             Canada | New Zealand
              India | Austria
              
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-
-```
-
              
-From the Graph under you can choose witch country you want to look at. This graph shows you the average consumption of renewable energy per capita. 
+From the Graph below you can choose which country you want to look at. This graph shows you the average consumption of renewable energy per capita. 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 plotPrcap
@@ -429,22 +423,15 @@ plotPrcap
 
   Top 5 total      | Top 5 per capita
 ------------------ | -----------------
-      Turkmekistan | Algeria
-           Algerie | Denmark
-           Belarus | Hungary
-           Denmark | Belgium
-           Vietnam | Vietnam  
+Turkmekistan 24.2% | Algeria 16%
+    Algeria  18.6% | Denmark 15.5%
+    Belarus  16.3% | Hungary 12.4%
+    Denmark  15.9% | Belgium 11.5%
+    Vietnam  12.6% | Vietnam 10.6%  
 
 
-Top 5 total
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-head(unique(Headtotalcap$Country, 5))
-```
+Top 5 total is gathered from the dataset "Headtotalcap", while Top 5 per capita is gathered from "Headratecap". 
 
-Top 5 per capita
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-head(unique(Headratecap$Country, 5))
-```
              
               
 We looked into the sources from where the countries with high consumption of renewable energy got their energy from. All the countries got mainly their energy from hydro-alternatives, wind was second most common followed by solar. 
