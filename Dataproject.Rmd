@@ -188,26 +188,6 @@ ggplot(indiaGdp, aes(x = Year, y = GdpPercap)) +
 
 
 ```{r, include=FALSE}
-# ANIMERT GRAF AV GDP-PER-CAPITA, kjør animplot for å se grafen.
-
-gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
-  width = NULL, height = NULL)
-
-file_renderer(dir = ".", prefix = "gganim_plot", overwrite = FALSE)
-
-animplot <- ggplot(GdpPercap, aes(x=Year , y=GdpPercap, color=Country)) + 
-  geom_line() + 
-  geom_point() + 
-  ggtitle("Gdp per capita by country from 1950 to 2018") + 
-  ylab("Gdp per capita") +
-  transition_reveal(Year)+
-  theme_ft_rc()
-
-
-
-```
-
-```{r, include=FALSE}
 #Uploading and fixing the population file for easy data wrangling
 
 Population <- read.csv("population-figures-by-country-csv_csv.csv")
@@ -405,9 +385,9 @@ __Now try to search for *United States* in the graph above__. We found the US gr
 In the 1980's US demand for oil started to increase, at the same time in the late 80’s the situation in the Gulf forced US to protect their oil tankers and not long after, a war broke out. We haven’t found any direct link between the build up to the war and reduction in the consumption of renewable energy, but we assume that the gulf war would have had some sort of impact.  
 Then we have 2001. Since it's mainly hydro that is produced as a renewable energy in the US, it is vulnerable to drought, which happened in 2001.  
 
-#### Renewable energy useage Per Capita  
+#### Renewable energy usage Per Capita  
 
-  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mentioned on both rankings but it has now moved to second place. Norway tops the ranking, but this is not strange at all considering that the country gets 99% of its energy from renewable energy (mainly hydropower).  
+  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mentioned on both rankings but it has now moved to second place. Norway tops the ranking, but this is not strange at all considering that the country gets 99% of its energy from renewable energy (mainly hydropower). What we found interesting with this graph is that the energy usage per capita is stable across countries (with the exeption of Norway).   
     From the table below you can see the top 5 list for energy consumption in the world, total and per capita  
       
 
