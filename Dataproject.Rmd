@@ -15,20 +15,22 @@ rm(list = ls())
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
-library(gapminder)
 library(gganimate)
-library(hrbrthemes) # ikke sikker på om denne trenger å være med 
 library(png)
 library(gifski)
 library(magick)
 library(broom)
 library(plotly)
 library(crosstalk)
-library(R2HTML)
 packageVersion("plotly")
 
 
 ```
+
+```{r, include=FALSE}
+# This is the raw and unedited code we have worked with throughout the data science project. We wanted to keep it this way to show how we worked, instead of cutting it down to the bare minimum. We also included comments in case there are any codes that are not self-explanatory. There will be alot of data frames in the enviroment, but we won't contain them in lists.
+```
+
 
 ```{r, include=FALSE}
 #Laster opp og rydder HDI filen
@@ -49,6 +51,7 @@ energy <- rename(energy, "Solar" = "Solar..terawatt.hours.")
 energy <- rename(energy, "Other renewables" = "Other.renewables..modern.biofuels..geothermal..wave...tidal...terawatt.hours.")
 energy <- energy[ ,-2]
 
+#Summerer energiforbruket for å gjøre klar til analyse
 energy$TotalenergyUse <- rowSums(energy[, c("Hydro", "Wind", "Solar", "Other renewables")], na.rm=T)
 
 energy <- energy[ ,-3:-6]
@@ -133,7 +136,7 @@ GdpChina <- GdpPercap %>%
 
 
 
-#Tester å sette gdppercap med totalenergy use for USA. Kunne startet den lavere og på samme punkt på y aksen, men det er ingen korrelasjon uansett.
+#Tester å sette gdppercap med totalenergy use for USA. Vi har prøvd mer enn bare USA, men den eneste vi kunne finne noen sammenheng med var Kina. Kunne startet den lavere og på samme punkt på y aksen, men det er ingen korrelasjon uansett.
 ggplot() +
   geom_line(data = GdpUS, aes(y = GdpUS$GdpPercap, x = Year)) +
   geom_line(data = americaenergy, aes(y = americaenergy$TotalenergyUse, x = Year))
@@ -185,7 +188,7 @@ ggplot(indiaGdp, aes(x = Year, y = GdpPercap)) +
 
 
 ```{r, include=FALSE}
-# ANIMERT GRAF AV GDP-PER-CAPITA 
+# ANIMERT GRAF AV GDP-PER-CAPITA, kjør animplot for å se grafen.
 
 gifski_renderer(file = tempfile(fileext = ".gif"), loop = TRUE,
   width = NULL, height = NULL)
@@ -215,6 +218,7 @@ Population$Year <- substring(Population$Year, 6, 9)
 
 Population$Year <- as.numeric(Population$Year)
 
+#Removing years up to 1965
 Population <- Population[-1:-1315, ]
 
 Population <- Population [, -2]
@@ -334,6 +338,7 @@ plotTotal <- energyview %>%
   plot_ly(x = ~Year, y = ~TotalenergyUse, alpha = 0.5, hoverinfo = "text", text = ~Country) %>%
   group_by(Country) %>%
   add_lines() %>%
+  layout(xaxis = list(title = "Year"), yaxis = list(title = "Terrawatt hours")) %>%
   highlight(selectize = TRUE)
 plotTotal
 ```
@@ -345,6 +350,7 @@ plotPrcap <- totalprcap %>%
   plot_ly(x = ~Year, y = ~Prcap, alpha = 0.5, hoverinfo = "text", text = ~Country) %>%
   group_by(Country) %>%
   add_lines() %>%
+  layout(xaxis = list(title = "Year"), yaxis = list(title = "Terrawatt hours per capita")) %>%
   highlight(selectize = TRUE)
 
 plotPrcap
@@ -383,19 +389,19 @@ After a lot of data-wrangling we managed to make some datasets that were quite i
 5. India
 
 When you look at the graph below you can search for the desired country. The graph contains all the countries we had in our dataset.  
-  The y-axis tells us how much energy in megawatt hours that where consumed in a year, and the x-axis shows each year from 1965 to 2016. We recommend looking at China, USA and Brazil to see the development differences.
+  The y-axis tells us how much energy in megawatt hours that where consumed in a year, and the x-axis shows each year from 1965 to 2016. We recommend looking at China, USA and Brazil to see the development differences. China has a steady increase, until it finally gains a massive leap. United states keeps the energy use steady, but has a few dips which we will explain below. Brazil on the other hand, maintains a steady increase throughout.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 plotTotal
 ```
 
   
-At first glance, we can see that the top 5 countries either has a fairly large population or a well developed economy. What we also found interesting is China being at the top, as it is also on the top of global total Co2 emissions. There are several reasons why China has expanded so much over the years in the renewable energy sector; For one, the rising population increases demand for electricity, and investing in renewable energy creates a long-lasting and safe opportunity to provide it. The second point is the health hazards currently present in China, where air pollution is the main concern, from fossil fuel and coal power plants. Hydropower is the main source of renewable energy in China, which may come as a surprise to many. With these findings, This poses an interesting question; Why isn't India investing nearly as much in renewable energy as China? It has the same criterias, namely a rising population, and air pollution! One of the answers may be that China has a "more centralized" government system that creates a better incentive to invest in specific sectors.
+At first glance, we can see that the top 5 countries either has a fairly large population or a well developed economy. What we also found interesting is China being at the top, as it is also on the top of global total Co2 emissions. There are several reasons why China has expanded so much over the years in the renewable energy sector; For one, the rising population increases demand for electricity, and investing in renewable energy creates a long-lasting and safe opportunity to provide it. The second point is the health hazards currently present in China, where air pollution is the main concern, from fossil fuel and coal power plants. Hydropower is the main source of renewable energy in China, which may come as a surprise to many. With these findings, This poses an interesting question; Why isn't India investing nearly as much in renewable energy as China? It has the same criterias, namely a rising population, and air pollution! One of the answers may be that China has a "more centralized" government system that creates a better incentive to invest in specific sectors. What we found in common for these countries on top is that they have a large consumation of total energy, and a considerable percentage share of this is renewable. 
   
   ***
 
 
-__Now try to search for *United States* in the graph above__. As you can see from the graph, there are three major dips; 1973, 1980 and 2001. For 1973, this may have been caused by the 1973 energy crisis. Due to this crisis, the US decided to be energy independent and consolidated the federal energy administration which also had an energy research and development administration. All this may have led to make it more difficult to research and develop sources of renewable energy.  
+__Now try to search for *United States* in the graph above__. We found the US graph to be very interesting. As you can see from the graph, there are three major dips; 1973, 1980 and 2001. For 1973, this may have been caused by the 1973 energy crisis. Due to this crisis, the US decided to be energy independent and consolidated the federal energy administration which also had an energy research and development administration. All this may have led to make it more difficult to research and develop sources of renewable energy.  
 In the 1980's US demand for oil started to increase, at the same time in the late 80’s the situation in the Gulf forced US to protect their oil tankers and not long after, a war broke out. We haven’t found any direct link between the build up to the war and reduction in the consumption of renewable energy, but we assume that the gulf war would have had some sort of impact.  
 Then we have 2001. Since it's mainly hydro that is produced as a renewable energy in the US, it is vulnerable to drought, which happened in 2001.  
 
@@ -439,7 +445,7 @@ Turkmekistan 24.2% | Algeria 16%
 
 Top 5 total is gathered from the dataset "Headtotalcap", while Top 5 per capita is gathered from "Headratecap". 
 
-* _We have gathered some information about the countries to explain why they are on the list._  
+* _Since this is the main part of our story, we want to explain in detail why these countries are on top of the list._  
   + __Algeria__  
     Algeria is the country that have highest grow rate with renewable energy. The reason for this is that they export petroleum and natural gas that is estimated to be more than 60% than their budget revenue. And over 95% of their exports earnings. Algeria went from having 80 % of their usage from oil to 60 % and 13% from Renewable energy to 26%, while the rest is from nuclear energy. Algeria has an astonishing geographic stance that gives them enormous opportunities to produce renewable energies, mainly from wind, solar and biomass. They set a goal to generate as much renewable energy as they produce from natural gas by 2020. Algeria has the potential to generate three times the necessary energy use than what they have now, All because of the geographical location of the country. The technology for generating renewable energy have expanded and made it cheaper to produce renewable energy.  
   + __Denmark__  
@@ -465,7 +471,7 @@ We then found something really surprising when we looked at the countries with h
 
 
 
-
+### Regarding developing countries
 
 After some more research, we found that developing countries have poor access to formal finance witch makes it difficult to start big projects. This leads to difficulties when investors want to invest because there is a lack of investor protection. Bad social infrastructure and political instability can affect the investment poorly. Due to the limitations for investments, it appears that building structures for renewable energy may be too costly for these countries. Another interesting point is the technology difference for developing countries; Efficiency for solar panels are tied directly to new technology for batteries, etc. For the best efficiency, you need the newest technology, which proves to be costly. It would especially make sense for countries in Africa to invest in solar energy, but buying the newest technology may be too costly.
 
@@ -476,5 +482,5 @@ Our findings indicate that an increase in renewable energy stems from several fa
 1. Investment in renewable energy (Where a country's economy comes into play)
 2. Potential for renewable energy, and regional differences (e.g slopes for dams or flat ground for wind turbines)
 3. Political agreements, where a quota has to be met (e.g Paris agreement)
-4. Access to technology
+4. Access to technology, through neighbouring countries (Europe), or bought (China).
 
