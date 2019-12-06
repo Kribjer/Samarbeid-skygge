@@ -387,7 +387,7 @@ Then we have 2001. Since it's mainly hydro that is produced as a renewable energ
 
 #### Renewable energy usage Per Capita  
 
-  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mentioned on both rankings but it has now moved to second place. Norway tops the ranking, but this is not strange at all considering that the country gets 99% of its energy from renewable energy (mainly hydropower). What we found interesting with this graph is that the energy usage per capita is stable across countries (with the exeption of Norway).   
+  When we look at which countries has the biggest consumption per capita the list changes, only Canada is mentioned on both rankings but it has now moved to second place. Norway tops the ranking, but this is not strange at all considering that the country gets 99% of its energy from renewable energy (mainly hydropower). Due to this amount of percentage being renewable energy, the graph won't be as stable as the other countries, because factors that affect hydropower will show more clearly in the graph. What we found interesting with this graph is that the energy usage per capita is stable across countries (with the exeption of Norway). An explanation to this may be that a country keeps its power supply steady with the population increase.   
     From the table below you can see the top 5 list for energy consumption in the world, total and per capita  
       
 
