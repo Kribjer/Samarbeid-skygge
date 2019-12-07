@@ -342,7 +342,7 @@ plotPrcap
 
 # What causes an increase in consumption of renewable energy?
 
-For our data project we wanted to look at the consumption of renewable energy. We asked ourselves what we wanted to focus on, and we decided to look closer on the total consumption in the world, and the increase in usage of renewable energy.  
+For our data project we wanted to look at the consumption of renewable energy. We asked ourselves what we wanted to focus on, and we decided to look closer on the total consumption in the world, and the increase in usage of renewable energy. Our data science project has been through many revisions, but after we got to explore and understand our data better, we found what we wanted to focus on. 
   
   
 * To get started, we wanted to take a look at:  
@@ -358,7 +358,7 @@ But first we think it is wise to clarify where we got our data, and what limitat
 
 Our source is primarily Our World Data. The site is run by a subdivision on the University of Oxford, which depends on voluntary donations for its users. The site is primarily a gathering service and gathers information from other scientists, universities and independent people from all over the world, and post the data on their website. All the big data in the project has been taken from this website. The data from this site includes up to 2016, and due to some countries lacking information before 1965 we chose to start the dataset from 1965. 
 
-The way we have approached this data science project may seem a bit unconventional. We want to use our datasets to give us a pointer, where we can find further information and build a story. We tried to compare total GDP (and per capita) against renewable energy use, but we found no correlation between the two. We also tried for HDI, but for developed countries it is mainly a linear graph. Adding more economic variables would just convolute our main objective; The problem is trying to force/predict a correlation rather than finding an explanation in the dataset itself. That's why we haven't included the datasets containing GDP and HDI in this presentation, but you can view it in the code and see how we have worked with it. 
+The way we have approached this data science project may seem a bit unconventional. We want to use our datasets to give us a pointer, where we can find further information and build a story. We tried to compare total GDP (and per capita) against renewable energy use, but we found no correlation between the two. We also tried for HDI, but for developed countries it is mainly a linear graph. Adding more economic variables would just convolute our main objective; The problem is trying to force/predict a correlation rather than finding an explanation in the dataset itself. That's why we haven't included the datasets containing GDP and HDI in this presentation, but you can view it in the code and see how we have worked with it. We also wanted to make an interactive world map, but we found that an interactive graph would prove much more informative.
 
 
 After a lot of tidying we managed to make some datasets that were quite interesting. The first thing we looked at was the five countries that had the highest consumptions of renewable energy in total. From this dataset we found that china had the highest consumption in the world, almost twice as much as second place, which was USA. The rest of the list looked like this:
@@ -452,7 +452,7 @@ We then found something really surprising when we looked at the countries with h
 
 
 
-### Regarding developing countries
+### Side note regarding developing countries
 
 We found that developing countries have poor access to formal finance witch makes it difficult to start big projects. This leads to difficulties when investors want to invest because there is a lack of investor protection. Bad social infrastructure and political instability can affect the investment poorly. Due to the limitations for investments, it appears that building structures for renewable energy may be too costly for these countries. Another interesting point is the technology difference for developing countries; Efficiency for solar panels are tied directly to new technology for batteries, etc. For the best efficiency, you need the newest technology, which proves to be costly. It would especially make sense for countries in Africa to invest in solar energy, but buying the newest technology may be too costly.
 
@@ -468,3 +468,17 @@ Our findings indicate that an increase in renewable energy stems from several fa
 
 
 What we were surprised by is the effect of regional differences. This may seem apparent, but it explains some questions about why countries don't invest more in renewable energy; If it isn't possible to build structures to generate renewable energy, then you can't invest in it. 
+
+### Sources
+
+https://tradingeconomics.com/algeria
+https://www.sciencedirect.com/science/article/pii/S0301421502001337
+https://www.rte.ie/news/newslens/2018/0111/932573-denmark-wind-farm/
+https://www.osti.gov/etdeweb/biblio/20314605
+https://www.openaccessgovernment.org/hungary-plans-to-ditch-coal-by-2030-and-become-fully-reliant-on-renewable-energy/55057/
+http://www.res-legal.eu/en/search-by-country/belgium/summary/c/belgium/s/res-e/sum/108/lpid/107/
+https://energytransition.org/2016/10/renewable-energy-in-belgium/
+https://www.vietnam-briefing.com/news/vietnams-push-for-renewable-energy.html/
+https://succow-stiftung.de/tl_files/pdfs_downloads/MDF%20Working%20Paper/MDF%20Paper_RE%20and%20EE%20in%20Central%20Asia_Kominla%20Nabiyeva_2015.pdf
+http://mfa.gov.by/en/organizations/issue/energy/
+
