@@ -1,6 +1,6 @@
 ---
 title: "Final Dataproject"
-author: "skyggemenn inc^TM^."
+author: "Kandidatnummer: 29, 4, 24"
 date: "24/09/2019"
 output: html_document
 ---
