@@ -471,6 +471,15 @@ What we were surprised by is the effect of regional differences. This may seem a
 
 ### Sources
 
+Datasets
+
+https://data.worldbank.org/indicator/SP.POP.TOTL
+http://hdr.undp.org/en/data
+https://ourworldindata.org/renewable-energy
+https://fred.stlouisfed.org/categories/33111/downloaddata
+
+Explanations for countries in average growth rate
+
 https://tradingeconomics.com/algeria
 https://www.sciencedirect.com/science/article/pii/S0301421502001337
 https://www.rte.ie/news/newslens/2018/0111/932573-denmark-wind-farm/
@@ -481,4 +490,6 @@ https://energytransition.org/2016/10/renewable-energy-in-belgium/
 https://www.vietnam-briefing.com/news/vietnams-push-for-renewable-energy.html/
 https://succow-stiftung.de/tl_files/pdfs_downloads/MDF%20Working%20Paper/MDF%20Paper_RE%20and%20EE%20in%20Central%20Asia_Kominla%20Nabiyeva_2015.pdf
 http://mfa.gov.by/en/organizations/issue/energy/
+
+
 
